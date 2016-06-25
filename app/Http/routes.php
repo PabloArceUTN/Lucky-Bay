@@ -30,5 +30,8 @@ Route::group(['middleware' => 'auth'], function () {
     return "helllo";
   });
 
+Route::get('/home', 'HomeController@index');
+Route::get('/video', 'VideoController@index');
+
 });
 Route::auth();
