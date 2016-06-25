@@ -9,6 +9,14 @@ echo ' [*] Waiting for messages. To exit press CTRL+C', "\n";
 
 $callback = function($msg) {
   echo " [x] Received ", $msg->body, "\n";
+  $url = $msg->body;
+  $cmd = 'youtube-dl '.$url;
+  echo $cmd;
+  exec($cmd, $output, $ret);
+  echo 'output: ';
+  var_export($output);
+  echo "\nret: ";
+  var_export($ret);
 };
 
 $channel->basic_consume('hello', '', false, true, false, false, $callback);
