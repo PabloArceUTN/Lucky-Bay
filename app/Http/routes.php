@@ -11,10 +11,24 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::auth();
 
-Route::get('/home', 'HomeController@index');
+/*
+This create a private route group. The function is revoke that route, acces or
+resources to unauthorized users
+*/
+Route::group(['middleware' => 'auth'], function () {
+
+  Route::get('/home', 'HomeController@index');
+
+  Route::get('/list', function()
+  {
+    return "helllo";
+  });
+
+});
+Route::auth();
