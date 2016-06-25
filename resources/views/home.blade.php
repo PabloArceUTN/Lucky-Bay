@@ -33,7 +33,7 @@
         <h4 class="modal-title" id="myModalLabel">Download Video</h4>
       </div>
       <!-- form to download video -->
-      <form class="form-horizontal" role="form" action="{{ url('/video/download') }}" method="POST">
+      <form class="form-horizontal" role="form" action="{{ url('/video') }}" method="POST">
         {{ csrf_field() }}
         <div class="modal-body">
           <span>Paste your video URL below</span>

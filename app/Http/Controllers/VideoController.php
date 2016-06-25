@@ -12,7 +12,11 @@ use PhpAmqpLib\Message\AMQPMessage;
 class VideoController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
+    {
+        return $request->url;
+    }
+    private function putQueue($url)
     {
 
     }
@@ -26,10 +30,5 @@ class VideoController extends Controller
       echo " [x] Sent 'URL!'\n";
       $channel->close();
       $connection->close();
-    }
-
-    public function download($value='')
-    {
-      // return "Hola";
     }
 }
