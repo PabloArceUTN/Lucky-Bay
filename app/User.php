@@ -23,4 +23,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /** Frist relation
+      * Set/Get Video's by User's
+    **/
+    public function videos()
+    {
+      return $this->hasMany('App\Video');
+    }
 }
