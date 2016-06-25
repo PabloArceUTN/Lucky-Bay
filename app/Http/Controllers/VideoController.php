@@ -23,4 +23,9 @@ class VideoController extends Controller
       $channel->close();
       $connection->close();
     }
+
+    public function download($value='')
+    {
+      // return "Hola";
+    }
 }
