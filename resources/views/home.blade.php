@@ -48,9 +48,9 @@
               <select class="form-control" name="format">
                 <option value="default">Default</option>
                 <option value="mp4">mp4</option>
-                <option value="3pg">3pg</option>
+                <option value="3gp">3gp</option>
                 <option value="webm">webm</option>
-                <option value="m4a">m4a (Only Audio)</option>
+                <option value="m4a">m4a (Audio Only)</option>
               </select>
             </div>
           </div>

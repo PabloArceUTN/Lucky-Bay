@@ -16,9 +16,10 @@ class VideoController extends Controller
   // Index action: It's called for download action on the website
   public function index(Request $request)
   {
-    $this->putQueue($request->url);
+    $this->putQueue($request->url, $request->format);
+    return redirect('/');
   }
-  private function putQueue($url)
+  private function putQueue($url, $format)
   {
     //save url video in db
     $user_id=Auth::user()->id;
@@ -28,7 +29,7 @@ class VideoController extends Controller
     $video->state="pending";
     $video->save();
 
-    $arr =json_encode(array('id'=>$video->id,'user_id'=>$user_id,'url'=>$url));
+    $arr =json_encode(array('id'=>$video->id,'user_id'=>$user_id,'url'=>$url,'format'=>$format));
     $connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
     $channel = $connection->channel();
     $channel->queue_declare('hello', false, false, false, false);
