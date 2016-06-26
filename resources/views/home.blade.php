@@ -81,10 +81,14 @@
         <tr class="success">
           <td>{{ $value->video_url }}</td>
           <td>{{ $value->state }}</td>
-          <td><button  action="/download/{{json_encode(array('location'=>$value->video_location))}}" class="btn btn-success btn-lg btn-block">
+          <!-- "/download/{{json_encode(array('location'=>$value->video_location))}}" -->
+          <td><form class="" action="/download/" method="post">  {{ csrf_field() }}
+            <input type="hidden" name="location" id="location" value="{{$value}}">
+            <button  type="submit" class="btn btn-success btn-lg btn-block">
               <span class="glyphicon glyphicon-download-alt" aria-hidden="true">
               </span>
             </button>
+          </form>
           </td>
         </tr>
         @else
