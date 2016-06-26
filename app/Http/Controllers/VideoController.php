@@ -39,4 +39,12 @@ class VideoController extends Controller
     $channel->close();
     $connection->close();
   }
+
+
+// public function download($request)
+//     {
+//       $file =$request;
+//       return Response::download($file,'cap1.mp4',
+//       ['Content-Type','application/mp4']);
+//     }
 }

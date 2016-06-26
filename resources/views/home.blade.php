@@ -66,4 +66,39 @@
     </div>
   </div>
 </div>
+<!-- table video -->
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+          <td>URL</td>
+            <td>State</td>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach($videos as $key => $value)
+      @if ( $value->state == 'finaly')
+        <tr class="success">
+          <td>{{ $value->video_url }}</td>
+          <td>{{ $value->state }}</td>
+          <td><button  action="/download/{{json_encode(array('location'=>$value->video_location))}}" class="btn btn-success btn-lg btn-block">
+              <span class="glyphicon glyphicon-download-alt" aria-hidden="true">
+              </span>
+            </button>
+          </td>
+        </tr>
+        @else
+        <tr class="active">
+          <td>{{ $value->video_url }}</td>
+          <td>{{ $value->state }}</td>
+          <td><button type="sumbit" action="" class="btn disabled btn-danger btn-lg btn-block">
+              <span class="glyphicon glyphicon-download-alt" aria-hidden="true">
+              </span>
+            </button>
+          </td>
+        </tr>
+          @endif
+    @endforeach
+    </tbody>
+</table>
 @endsection
