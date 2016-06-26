@@ -27,6 +27,7 @@ class VideoController extends Controller
     $video->user_id=$user_id;
     $video->video_url=$url;
     $video->state="pending";
+    $video->format=$format;
     $video->save();
 
     $arr =json_encode(array('id'=>$video->id,'user_id'=>$user_id,'url'=>$url,'format'=>$format));
