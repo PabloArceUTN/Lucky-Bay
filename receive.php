@@ -10,7 +10,7 @@ echo ' [*] Waiting for messages. To exit press CTRL+C', "\n";
 $callback = function($msg) {
   echo " [x] Received ", $msg->body, "\n";
   $url = $msg->body;
-  $cmd = 'youtube-dl '.$url;
+  $cmd = 'youtube-dl -o "videos/%(title)s.%(ext)s" '.$url;
   echo $cmd;
   exec($cmd, $output, $ret);
   echo 'output: ';
