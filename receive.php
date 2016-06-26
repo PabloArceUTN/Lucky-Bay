@@ -10,7 +10,7 @@ $capsule = new Capsule;
 $capsule->addConnection([
     'driver'    => 'mysql',
     'host'      => 'localhost',
-    'database'  => 'luckybaydb',
+    'database'  => '',
     'username'  => '',
     'password'  => '',
     'charset'   => 'utf8',
@@ -54,12 +54,21 @@ $callback = function($msg) {
   $cmd = 'youtube-dl '.$format.' -o "videos/'.$objectQueue['user_id'].'/%(title)s.%(ext)s" '.$objectQueue['url'];
   echo $cmd;
   exec($cmd, $output, $ret);
-  echo 'output: ';
+  // echo 'output: file name '. $output;
+  // var_dump($output);
   var_export($output);
-  echo "\nret: ";
+  echo "Location: ". $output[4];
+  $str = $output[4];
+  $matches = array();
+  if (preg_match('#Destination:\s(.*)#', $str, $matches)) {
+      var_dump($matches);
+  }
+  echo "\nret: ".$ret;
   var_export($ret);
+  echo "Para Guardar: ".$matches[1];
   $video = Video::find($objectQueue['id']);
   $video->state = "ready";
+  $video->video_location = $matches[1];
   $video->save();
   echo Video::find($objectQueue['id']);
 };

@@ -46,7 +46,7 @@
             <label class="col-xs-3 control-label">Format</label>
             <div class="col-xs-9 selectContainer">
               <select class="form-control" name="format">
-                <option value="default">Default</option>
+                <!-- <option value="default">Default</option> -->
                 <option value="mp4">mp4</option>
                 <option value="3gp">3gp</option>
                 <option value="webm">webm</option>
@@ -77,7 +77,7 @@
     </thead>
     <tbody>
     @foreach($videos as $key => $value)
-      @if ( $value->state == 'finaly')
+      @if ( $value->state == 'ready')
         <tr class="success">
           <td>{{ $value->video_url }}</td>
           <td>{{ $value->state }}</td>
