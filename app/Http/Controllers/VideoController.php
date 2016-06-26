@@ -45,7 +45,7 @@ class VideoController extends Controller
     public function download(Request $request)
     {
       $file =json_decode($request->location,true);
-      updateVideo($file['id']);
+      $this->updateVideo($file['id']);
       return response()->download($file['video_location'],$file['name'],
       ['Content-Type','application/mp4']);
     }
