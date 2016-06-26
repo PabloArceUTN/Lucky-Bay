@@ -32,17 +32,21 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Download Video</h4>
       </div>
-      <div class="modal-body">
-        <span>Paste your video URL below</span>
-        <input type="text" class="form-control" placeholder="Video URL" aria-describedby="basic-addon1">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger btn-lg btn-block">
-          <span class="glyphicon glyphicon-download-alt" aria-hidden="true">
-          </span>
-        </button>
-        <button type="button" class="btn btn-default btn-lg btn-block" data-dismiss="modal">Cancel</button>
-      </div>
+      <!-- form to download video -->
+      <form class="form-horizontal" role="form" action="{{ url('/video') }}" method="POST">
+        {{ csrf_field() }}
+        <div class="modal-body">
+          <span>Paste your video URL below</span>
+          <input name="url" id="url" type="text" class="form-control" placeholder="Video URL" aria-describedby="basic-addon1">
+        </div>
+        <div class="modal-footer">
+          <button type="sumbit" class="btn btn-danger btn-lg btn-block">
+            <span class="glyphicon glyphicon-download-alt" aria-hidden="true">
+            </span>
+          </button>
+          <button type="button" class="btn btn-default btn-lg btn-block" data-dismiss="modal">Cancel</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

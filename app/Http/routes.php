@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
 
   Route::get('/home', 'HomeController@index');
   Route::get('/video', 'VideoController@index');
-
+  // download video
+  Route::post('/video', 'VideoController@index');
 });
 Route::auth();

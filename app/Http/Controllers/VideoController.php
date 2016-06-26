@@ -12,7 +12,11 @@ use PhpAmqpLib\Message\AMQPMessage;
 class VideoController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
+    {
+        return $request->url;
+    }
+    private function putQueue($url)
     {
 
     }
