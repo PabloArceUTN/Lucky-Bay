@@ -37,23 +37,23 @@ class VideoController extends Controller
     $channel->queue_declare('hello', false, false, false, false);
     $msg = new AMQPMessage($arr);
     $channel->basic_publish($msg, '', 'hello');
-    echo " [x] Sent 'URL!'\n";
     $channel->close();
     $connection->close();
   }
 
     public function download(Request $request)
     {
+      $user_pc=env('PC_USER');
       $file =json_decode($request->location,true);
       $this->updateVideo($file['id']);
-      return response()->download($file['video_location'],$file['name'],
+      return response()->download('/home/'.$user_pc.'/Lucky-Bay/'.$file['video_location'],$file['name'],
       ['Content-Type','application/mp4']);
     }
 
     public function updateVideo($id)
     {
       $video=Video::find($id);
-      $video->completed="completed";
+      $video->completed=true;
       $video->save();
     }
 }
