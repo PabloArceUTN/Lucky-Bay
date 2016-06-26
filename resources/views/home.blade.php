@@ -2,27 +2,27 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <!-- <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-                <div class="panel-body">
-                </div>
-            </div>
-        </div> -->
-        <div class="col-md-9 col-md-push-2">
+  <div class="row">
+    <!-- <div class="col-md-10 col-md-offset-1">
+    <div class="panel panel-default">
+    <div class="panel-heading">Dashboard</div>
+    <div class="panel-body">
+  </div>
+</div>
+</div> -->
+<div class="col-md-9 col-md-push-2">
 
-        </div>
-        <div class="col-md-3 col-md-pull-10">
-          <!-- Button trigger modal -->
-          <div class="jumbotron">
-            <h2 class="text-center">Actions</h2>
-            <button type="button" class="bbtn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#myModal">
-              Download video
-            </button>
-          </div>
-        </div>
-    </div>
+</div>
+<div class="col-md-3 col-md-pull-10">
+  <!-- Button trigger modal -->
+  <div class="jumbotron">
+    <h2 class="text-center">Actions</h2>
+    <button type="button" class="bbtn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#myModal">
+      Download video
+    </button>
+  </div>
+</div>
+</div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -36,8 +36,24 @@
       <form class="form-horizontal" role="form" action="{{ url('/video') }}" method="POST">
         {{ csrf_field() }}
         <div class="modal-body">
-          <span>Paste your video URL below</span>
-          <input name="url" id="url" type="text" class="form-control" placeholder="Video URL" aria-describedby="basic-addon1">
+          <div class="form-group">
+            <label class="col-xs-3 control-label">Video URL</label>
+            <div class="col-xs-9">
+              <input name="url" id="url" type="text" class="form-control" placeholder="Video URL" aria-describedby="basic-addon1">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-xs-3 control-label">Format</label>
+            <div class="col-xs-9 selectContainer">
+              <select class="form-control" name="format">
+                <option value="default">Default</option>
+                <option value="mp4">mp4</option>
+                <option value="3pg">3pg</option>
+                <option value="webm">webm</option>
+                <option value="m4a">m4a (Only Audio)</option>
+              </select>
+            </div>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="sumbit" class="btn btn-danger btn-lg btn-block">
