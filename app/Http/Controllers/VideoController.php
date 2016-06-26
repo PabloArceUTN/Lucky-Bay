@@ -41,11 +41,18 @@ class VideoController extends Controller
     $connection->close();
   }
 
+    public function download(Request $request)
+    {
+      $file =json_decode($request->location,true);
+      updateVideo($file['id']);
+      return response()->download($file['video_location'],$file['name'],
+      ['Content-Type','application/mp4']);
+    }
 
-// public function download($request)
-//     {
-//       $file =$request;
-//       return Response::download($file,'cap1.mp4',
-//       ['Content-Type','application/mp4']);
-//     }
+    public function updateVideo($id)
+    {
+      $video=Video::find($id);
+      $video->completed="completed";
+      $video->save();
+    }
 }
