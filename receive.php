@@ -60,8 +60,12 @@ $callback = function($msg) {
   echo "Location: ". $output[4];
   $str = $output[4];
   $matches = array();
+  $matches2 = array();
   if (preg_match('#Destination:\s(.*)#', $str, $matches)) {
       var_dump($matches);
+  }
+  if (preg_match('#Destination:\svideos\/\d+\/(.*)#', $str, $matches2)) {
+      var_dump($matches2);
   }
   echo "\nret: ".$ret;
   var_export($ret);
@@ -69,6 +73,8 @@ $callback = function($msg) {
   $video = Video::find($objectQueue['id']);
   $video->state = "ready";
   $video->video_location = $matches[1];
+  $video->completed=true;
+  $video->name = $matches2[1];
   $video->save();
   echo Video::find($objectQueue['id']);
 };
