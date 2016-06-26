@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Auth;
+use App\Video;
+use App\User;   
 use App\Http\Requests;
 require '../vendor/autoload.php';
 use PhpAmqpLib\Connection\AMQPStreamConnection;
@@ -13,15 +15,20 @@ class VideoController extends Controller
 {
     //
     public function index(Request $request)
-    {
-        return $request->url;
-    }
+      {
+      $this->putQueue($request->url);
+      }
     private function putQueue($url)
     {
-
-    }
-    private function putQueue($url)
-    {
+      //save url video in db
+      $user_id=Auth::user()->id;
+      $video= new Video;
+      $video->user_id=$user_id;
+      $video->video_url=$url;
+      $video->state="pending";
+      $video->save();
+      echo $video->id;
+  // putQueue url video
       $connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
       $channel = $connection->channel();
       $channel->queue_declare('hello', false, false, false, false);
