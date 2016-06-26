@@ -55,7 +55,7 @@ $callback = function($msg) {
   echo $cmd;
   exec($cmd, $output, $ret);
   echo 'output: ';
-  var_export($output);
+  var_export($);
   echo "\nret: ";
   var_export($ret);
   $video = Video::find($objectQueue['id']);

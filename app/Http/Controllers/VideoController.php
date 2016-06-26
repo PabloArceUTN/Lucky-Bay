@@ -17,6 +17,7 @@ class VideoController extends Controller
   public function index(Request $request)
   {
     $this->putQueue($request->url, $request->format);
+    return redirect('/');
   }
   private function putQueue($url, $format)
   {
