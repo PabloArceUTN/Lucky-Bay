@@ -18,6 +18,10 @@ class VideoController extends Controller
     }
     private function putQueue($url)
     {
+
+    }
+    private function putQueue($url)
+    {
       $connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
       $channel = $connection->channel();
       $channel->queue_declare('hello', false, false, false, false);
