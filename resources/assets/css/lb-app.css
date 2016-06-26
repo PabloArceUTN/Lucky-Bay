@@ -5,3 +5,9 @@
 .blue-color{
   background-color: blue;
 }
+.table-hover
+{
+  margin: 0 auto !important;
+  float: none !important;
+  color: white;
+}
