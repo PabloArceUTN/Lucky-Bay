@@ -2,27 +2,25 @@
 
 @section('content')
 <div class="container">
+  @if (session('status'))
+  <div class="alert alert-danger text-center">
+    {{ session('status') }}
+  </div>
+  @endif
   <div class="row">
-    <!-- <div class="col-md-10 col-md-offset-1">
-    <div class="panel panel-default">
-    <div class="panel-heading">Dashboard</div>
-    <div class="panel-body">
-  </div>
-</div>
-</div> -->
-<div class="col-md-9 col-md-push-2">
+    <div class="col-md-9 col-md-push-2">
 
-</div>
-<div class="col-md-3 col-md-pull-10">
-  <!-- Button trigger modal -->
-  <div class="jumbotron">
-    <h2 class="text-center">Actions</h2>
-    <button type="button" class="bbtn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#myModal">
-      Download video
-    </button>
+    </div>
+    <div class="col-md-3 col-md-pull-10">
+      <!-- Button trigger modal -->
+      <div class="jumbotron">
+        <h2 class="text-center">Actions</h2>
+        <button type="button" class="bbtn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#myModal">
+          Download video
+        </button>
+      </div>
+    </div>
   </div>
-</div>
-</div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -69,40 +67,40 @@
 <!-- table video -->
 
 <table class="table table-hover">
-    <thead>
-        <tr>
-          <td>URL</td>
-            <td>State</td>
-        </tr>
-    </thead>
-    <tbody>
+  <thead>
+    <tr>
+      <td>URL</td>
+      <td>State</td>
+    </tr>
+  </thead>
+  <tbody>
     @foreach($videos as $key => $value)
-      @if ( $value->state == 'ready')
-        <tr class="success">
-          <td>{{ $value->video_url }}</td>
-          <td>{{ $value->state }}</td>
-          <!-- "/download/{{json_encode(array('location'=>$value->video_location))}}" -->
-          <td><form class="" action="/download/" method="post">  {{ csrf_field() }}
-            <input type="hidden" name="location" id="location" value="{{$value}}">
-            <button  type="submit" class="btn btn-success btn-lg btn-block">
-              <span class="glyphicon glyphicon-download-alt" aria-hidden="true">
-              </span>
-            </button>
-          </form>
-          </td>
-        </tr>
-        @else
-        <tr class="active">
-          <td>{{ $value->video_url }}</td>
-          <td>{{ $value->state }}</td>
-          <td><button type="sumbit" action="" class="btn disabled btn-danger btn-lg btn-block">
-              <span class="glyphicon glyphicon-download-alt" aria-hidden="true">
-              </span>
-            </button>
-          </td>
-        </tr>
-          @endif
-    @endforeach
-    </tbody>
+    @if ( $value->state == 'ready')
+    <tr class="success">
+      <td>{{ $value->video_url }}</td>
+      <td>{{ $value->state }}</td>
+      <!-- "/download/{{json_encode(array('location'=>$value->video_location))}}" -->
+      <td><form class="" action="/download/" method="post">  {{ csrf_field() }}
+        <input type="hidden" name="location" id="location" value="{{$value}}">
+        <button  type="submit" class="btn btn-success btn-lg btn-block">
+          <span class="glyphicon glyphicon-download-alt" aria-hidden="true">
+          </span>
+        </button>
+      </form>
+    </td>
+  </tr>
+  @else
+  <tr class="active">
+    <td>{{ $value->video_url }}</td>
+    <td>{{ $value->state }}</td>
+    <td><button type="sumbit" action="" class="btn disabled btn-danger btn-lg btn-block">
+      <span class="glyphicon glyphicon-download-alt" aria-hidden="true">
+      </span>
+    </button>
+  </td>
+</tr>
+@endif
+@endforeach
+</tbody>
 </table>
 @endsection

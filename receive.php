@@ -2,10 +2,8 @@
 require_once './vendor/autoload.php';
 // require_once './bootstrap/start.php';
 include './vendor/autoload.php';
-
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use Illuminate\Database\Capsule\Manager as Capsule;
-
 $capsule = new Capsule;
 $capsule->addConnection([
     'driver'    => 'mysql',
@@ -17,21 +15,15 @@ $capsule->addConnection([
     'collation' => 'utf8_unicode_ci',
     'prefix'    => '',
 ]);
-
 // Set the event dispatcher used by Eloquent models... (optional)
 use Illuminate\Events\Dispatcher;
 use Illuminate\Container\Container;
-
 $capsule->setEventDispatcher(new Dispatcher(new Container));
-
 // Make this Capsule instance available globally via static methods... (optional)
 $capsule->setAsGlobal();
-
 // Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
 $capsule->bootEloquent();
-
 use App\Video;
-
 $connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
 $channel = $connection->channel();
 $channel->queue_declare('hello', false, false, false, false);
@@ -61,10 +53,10 @@ $callback = function($msg) {
   $str = $output[4];
   $matches = array();
   $matches2 = array();
-  if (preg_match('#Destination:\s(.*)#', $str, $matches)) {
+  if (preg_match('#\s(videos\/\d+.*\.[\w\d]+)\s?[h]?[a]?[s]?#', $str, $matches)) {
       var_dump($matches);
   }
-  if (preg_match('#Destination:\svideos\/\d+\/(.*)#', $str, $matches2)) {
+  if (preg_match('#\svideos\/\d+\/(.*)#', $str, $matches2)) {
       var_dump($matches2);
   }
   echo "\nret: ".$ret;
@@ -73,14 +65,11 @@ $callback = function($msg) {
   $video = Video::find($objectQueue['id']);
   $video->state = "ready";
   $video->video_location = $matches[1];
-  $video->completed=true;
   $video->name = $matches2[1];
   $video->save();
   echo Video::find($objectQueue['id']);
 };
-
 $channel->basic_consume('hello', '', false, true, false, false, $callback);
-
 // onprocess
 while(count($channel->callbacks)) {
     $channel->wait();

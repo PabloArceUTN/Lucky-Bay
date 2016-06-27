@@ -16,7 +16,16 @@ class VideoController extends Controller
   // Index action: It's called for download action on the website
   public function index(Request $request)
   {
-    $this->putQueue($request->url, $request->format);
+    $vq = Video::where('user_id', Auth::user()->id)
+        ->where('completed', false)
+        ->count();
+    // Cuantity of videos by user, if exist more than five can't download other
+    echo $vq;
+    if ($vq <= 4) {
+      $this->putQueue($request->url, $request->format);
+    }else {
+      return redirect('/')->with('status', 'Can\'t download more videos...');
+    }
     return redirect('/');
   }
   private function putQueue($url, $format)
