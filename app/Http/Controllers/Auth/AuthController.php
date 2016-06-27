@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use App\Video;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -71,18 +70,5 @@ class AuthController extends Controller
         ]);
         echo $user;
         return $user;
-    }
-    public function deleteAccount()
-    {
-      # code...
-      // $user = User::find($id);
-      // $video=Video::where('id',$id);
-      // $video->delete();
-      // $user->delete();
-      $user = User::find(Auth::user()->id);
-  Auth::logout();
-  if ($user->delete()) {
-     return Redirect::route('site-home')->with('global', 'Your account has been deleted!');
-   }
     }
 }

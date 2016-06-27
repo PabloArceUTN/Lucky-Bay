@@ -79,7 +79,7 @@
     @foreach($videos as $key => $value)
       @if ( $value->state == 'ready')
         <tr class="success">
-          <td>{{ $value->name }}</td>
+          <td>{{ $value->video_url }}</td>
           <td>{{ $value->state }}</td>
           <!-- "/download/{{json_encode(array('location'=>$value->video_location))}}" -->
           <td><form class="" action="/download/" method="post">  {{ csrf_field() }}
