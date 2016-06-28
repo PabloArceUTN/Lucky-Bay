@@ -31,13 +31,13 @@
         <h4 class="modal-title" id="myModalLabel">Download Video</h4>
       </div>
       <!-- form to download video -->
-      <form class="form-horizontal" role="form" action="{{ url('/video') }}" method="POST">
+      <form class="form-horizontal" role="form" action="{{ url('/video') }}" autocomplete="off" method="POST">
         {{ csrf_field() }}
         <div class="modal-body">
           <div class="form-group">
             <label class="col-xs-3 control-label">Video URL</label>
             <div class="col-xs-9">
-              <input name="url" id="url" type="text" class="form-control" placeholder="Video URL" aria-describedby="basic-addon1">
+              <input name="url" id="url" type="url" class="form-control" placeholder="Video URL" aria-describedby="basic-addon1">
             </div>
           </div>
           <div class="form-group">
@@ -65,12 +65,13 @@
   </div>
 </div>
 <!-- table video -->
-
+<hr>
+<div id="tableD" class="container">
 <table class="table table-hover">
   <thead>
     <tr>
-      <td></td>
-      <td></td>
+      <td>Video</td>
+      <td>Info</td>
     </tr>
   </thead>
   <tbody>
@@ -79,7 +80,6 @@
     <tr class="success">
       <td>{{ $value->name }}</td>
       <td>{{ $value->updated_at }}</td>
-      <!-- "/download/{{json_encode(array('location'=>$value->video_location))}}" -->
       <td><form class="" action="/download/" method="post">  {{ csrf_field() }}
         <input type="hidden" name="location" id="location" value="{{$value}}">
         <button  type="submit" class="btn btn-success btn-lg btn-block">
@@ -103,4 +103,6 @@
 @endforeach
 </tbody>
 </table>
+</div>
+<hr>
 @endsection
