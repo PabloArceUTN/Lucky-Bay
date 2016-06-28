@@ -17,7 +17,7 @@ class VideoController extends Controller
   public function index(Request $request)
   {
     $vq = Video::where('user_id', Auth::user()->id)
-        ->where('completed', false)
+        ->where('state', 'processing')
         ->count();
     // Cuantity of videos by user, if exist more than five can't download other
     echo $vq;
@@ -44,7 +44,8 @@ class VideoController extends Controller
     $connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
     $channel = $connection->channel();
     $channel->queue_declare('hello', false, false, false, false);
-    $msg = new AMQPMessage($arr);
+    //$msg = new AMQPMessage($arr);
+    $msg = new AMQPMessage($arr,array('delivery_mode' => 2));
     $channel->basic_publish($msg, '', 'hello');
     $channel->close();
     $connection->close();
