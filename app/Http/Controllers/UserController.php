@@ -14,7 +14,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class UserController extends Controller
 {
-    //
+    // Delete an user account
     public function deleteAccount()
     {
       $user = User::find(Auth::user()->id);

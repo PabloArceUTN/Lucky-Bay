@@ -9,7 +9,10 @@
   @endif
   <div class="row">
     <div class="col-md-9 col-md-push-2">
-
+      <div class="jumbotron">
+        <h2 class="text-center">Actions</h2>
+        <a class="btn btn-primary btn-lg btn-block" href="javascript:location.reload()">Refresh</a>
+      </div>
     </div>
     <div class="col-md-3 col-md-pull-10">
       <!-- Button trigger modal -->
@@ -21,6 +24,7 @@
       </div>
     </div>
   </div>
+
 </div>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
