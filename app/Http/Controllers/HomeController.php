@@ -26,8 +26,9 @@ class HomeController extends Controller
     public function index()
     {
       $videos=Video::where('user_id', Auth::user()->id)
-          ->where('completed', false)
-          ->get();
+      ->where('completed', false)
+      ->orderBy('updated_at')
+      ->get();
       return view('home')->with('videos',$videos);
     }
 }
