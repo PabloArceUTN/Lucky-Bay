@@ -35,12 +35,8 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('/video', 'VideoController@index');
   // download video
   Route::post('/video', 'VideoController@index');
-  // Route::get('/download/{location}', function($location)
-  // {
-  //   $file = $location;
-  //   return Response::download($file,'video.mp4',
-  //   ['Content-Type','application/mp4']);
-  // });  //Route::post('/download/{location}', 'VideoController@download');
+  Route::get('/profile', 'UserController@profile');
+  Route::post('/user', 'UserController@update');
   Route::post('/download/', 'VideoController@download');
 
 });
