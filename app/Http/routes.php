@@ -24,6 +24,7 @@ resources to unauthorized users
 Route::group(['middleware' => 'auth'], function () {
 
   Route::get('/', 'HomeController@index');
+  Route::get('/deleteAccount', 'UserController@deleteAccount');
 
   Route::get('/list', function()
   {

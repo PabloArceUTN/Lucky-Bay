@@ -69,16 +69,16 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <td>URL</td>
-      <td>State</td>
+      <td></td>
+      <td></td>
     </tr>
   </thead>
   <tbody>
     @foreach($videos as $key => $value)
     @if ( $value->state == 'ready')
     <tr class="success">
-      <td>{{ $value->video_url }}</td>
-      <td>{{ $value->state }}</td>
+      <td>{{ $value->name }}</td>
+      <td>{{ $value->updated_at }}</td>
       <!-- "/download/{{json_encode(array('location'=>$value->video_location))}}" -->
       <td><form class="" action="/download/" method="post">  {{ csrf_field() }}
         <input type="hidden" name="location" id="location" value="{{$value}}">
