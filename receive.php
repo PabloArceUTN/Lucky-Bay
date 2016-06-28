@@ -8,9 +8,9 @@ $capsule = new Capsule;
 $capsule->addConnection([
     'driver'    => 'mysql',
     'host'      => 'localhost',
-    'database'  => '',
-    'username'  => '',
-    'password'  => '',
+    'database'  => 'luckybay',
+    'username'  => 'root',
+    'password'  => '123456',
     'charset'   => 'utf8',
     'collation' => 'utf8_unicode_ci',
     'prefix'    => '',
@@ -66,6 +66,7 @@ $callback = function($msg) {
   $video->state = "ready";
   $video->video_location = $matches[1];
   $video->name = $matches2[1];
+  $video->completed =false;
   $video->save();
   echo Video::find($objectQueue['id']);
 };
