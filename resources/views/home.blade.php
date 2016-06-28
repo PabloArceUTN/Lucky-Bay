@@ -21,6 +21,7 @@
       </div>
     </div>
   </div>
+  <a class="btn btn-lg btn-primary" href="javascript:location.reload()">Actualizar</a>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
