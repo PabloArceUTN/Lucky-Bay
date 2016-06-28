@@ -8,9 +8,9 @@ $capsule = new Capsule;
 $capsule->addConnection([
     'driver'    => 'mysql',
     'host'      => 'localhost',
-    'database'  => 'luckybay',
-    'username'  => 'root',
-    'password'  => '123456',
+    'database'  => 'luckybaydb',
+    'username'  => 'marsupial',
+    'password'  => '12345678',
     'charset'   => 'utf8',
     'collation' => 'utf8_unicode_ci',
     'prefix'    => '',
