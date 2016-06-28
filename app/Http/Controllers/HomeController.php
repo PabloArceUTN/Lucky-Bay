@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
       $videos=Video::where('user_id', Auth::user()->id)
       ->where('completed', false)
-      ->orderBy('updated_at')
+      ->orderBy('updated_at','desc')
       ->get();
       return view('home')->with('videos',$videos);
     }
