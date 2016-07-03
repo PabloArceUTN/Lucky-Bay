@@ -23,7 +23,7 @@
 </div>
   <div class="form-group">
     <label class="sr-only" for="pwd">Password:</label>
-    <input type="password" class="form-control"  name="pwd" id="pwd" required>
+    <input type="password" placeholder="Pasword" class="form-control"  name="pwd" id="pwd" required>
   </div>
   <button type="submit" class="btn btn-default">Update</button>
   </form>
